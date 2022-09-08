@@ -16,8 +16,8 @@
  ***
  ****************************************************************************
  ****************************************************************************/
-#ifndef _UAPI_LINUX_SISFB_H_
-#define _UAPI_LINUX_SISFB_H_
+#ifndef _LINUX_SISFB_H_
+#define _LINUX_SISFB_H_
 #include <linux/types.h>
 #include <asm/ioctl.h>
 #define CRT2_DEFAULT 0x00000001

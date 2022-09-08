@@ -16,8 +16,8 @@
  ***
  ****************************************************************************
  ****************************************************************************/
-#ifndef _UAPI_LINUX_MSM_ION_H
-#define _UAPI_LINUX_MSM_ION_H
+#ifndef _LINUX_MSM_ION_H
+#define _LINUX_MSM_ION_H
 #include <linux/types.h>
 #define ION_BIT(nr) (1U << (nr))
 #define TARGET_ION_ABI_VERSION 2
@@ -33,7 +33,6 @@ enum ion_heap_ids {
   ION_CP_MM_HEAP_ID = 8,
   ION_SECURE_HEAP_ID = 9,
   ION_SECURE_DISPLAY_HEAP_ID = 10,
-  ION_VIDEO_HEAP_ID = 12,
   ION_SPSS_HEAP_ID = 13,
   ION_ADSP_HEAP_ID = 22,
   ION_SYSTEM_HEAP_ID = 25,
@@ -45,7 +44,6 @@ enum ion_heap_ids {
 #define ION_AUDIO_HEAP_ID 28
 #define ION_CAMERA_HEAP_ID 20
 #define ION_USER_CONTIG_HEAP_ID 26
-#define ION_FLAG_CP_CAMERA_ENCODE ION_BIT(14)
 #define ION_FLAG_CP_DSP_EXT ION_BIT(15)
 #define ION_FLAG_CP_TOUCH ION_BIT(17)
 #define ION_FLAG_CP_BITSTREAM ION_BIT(18)
@@ -60,7 +58,7 @@ enum ion_heap_ids {
 #define ION_FLAG_CP_CAMERA_PREVIEW ION_BIT(27)
 #define ION_FLAG_CP_CDSP ION_BIT(29)
 #define ION_FLAG_CP_SPSS_HLOS_SHARED ION_BIT(30)
-#define ION_FLAGS_CP_MASK 0x6FFEC000
+#define ION_FLAGS_CP_MASK 0x6FFE8000
 #define ION_FLAG_ALLOW_NON_CONTIG ION_BIT(28)
 #define ION_FLAG_SECURE ION_BIT(ION_HEAP_ID_RESERVED)
 #define ION_FLAG_POOL_FORCE_ALLOC ION_BIT(16)

@@ -16,8 +16,8 @@
  ***
  ****************************************************************************
  ****************************************************************************/
-#ifndef _UAPI_SPCOM_H_
-#define _UAPI_SPCOM_H_
+#ifndef _SPCOM_H_
+#define _SPCOM_H_
 #include <linux/types.h>
 #ifndef BIT
 #define BIT(x) (1 << x)
@@ -49,22 +49,22 @@ enum spcom_poll_events {
 struct spcom_user_command {
   enum spcom_cmd_id cmd_id;
   uint32_t arg;
-} __packed;
+} __attribute__((packed));
 struct spcom_send_command {
   enum spcom_cmd_id cmd_id;
   uint32_t timeout_msec;
   uint32_t buf_size;
   char buf[0];
-} __packed;
+} __attribute__((packed));
 struct spcom_user_create_channel_command {
   enum spcom_cmd_id cmd_id;
   char ch_name[SPCOM_CHANNEL_NAME_SIZE];
-} __packed;
+} __attribute__((packed));
 #define SPCOM_USER_RESTART_SP_CMD
 struct spcom_user_restart_sp_command {
   enum spcom_cmd_id cmd_id;
   uint32_t arg;
-} __packed;
+} __attribute__((packed));
 #define SPCOM_MAX_ION_BUF 4
 struct spcom_ion_info {
   int32_t fd;
@@ -80,5 +80,5 @@ struct spcom_user_send_modified_command {
   uint32_t timeout_msec;
   uint32_t buf_size;
   char buf[0];
-} __packed;
+} __attribute__((packed));
 #endif

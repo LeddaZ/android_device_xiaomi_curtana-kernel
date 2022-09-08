@@ -16,8 +16,8 @@
  ***
  ****************************************************************************
  ****************************************************************************/
-#ifndef _UAPI_MSM_NPU_H_
-#define _UAPI_MSM_NPU_H_
+#ifndef _MSM_NPU_H_
+#define _MSM_NPU_H_
 #include <linux/types.h>
 #define MSM_NPU_IOCTL_MAGIC 'n'
 #define MSM_NPU_GET_INFO _IOWR(MSM_NPU_IOCTL_MAGIC, 1, struct msm_npu_get_info_ioctl)
@@ -52,10 +52,8 @@
 #define MSM_NPU_PROP_ID_CLK_GATING_MODE (MSM_NPU_FW_PROP_ID_START + 2)
 #define MSM_NPU_PROP_ID_HW_VERSION (MSM_NPU_FW_PROP_ID_START + 3)
 #define MSM_NPU_PROP_ID_FW_VERSION (MSM_NPU_FW_PROP_ID_START + 4)
-#define MSM_NPU_PROP_ID_FW_GETCAPS (MSM_NPU_FW_PROP_ID_START + 5)
 #define MSM_NPU_FEATURE_MULTI_EXECUTE 0x1
 #define MSM_NPU_FEATURE_ASYNC_EXECUTE 0x2
-#define MSM_NPU_FEATURE_DSP_SID_MAPPED 0x8
 #define PROP_PARAM_MAX_SIZE 8
 struct msm_npu_patch_info {
   uint32_t chunk_id;

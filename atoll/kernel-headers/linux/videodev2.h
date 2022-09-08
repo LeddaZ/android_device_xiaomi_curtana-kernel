@@ -16,10 +16,9 @@
  ***
  ****************************************************************************
  ****************************************************************************/
-#ifndef _UAPI__LINUX_VIDEODEV2_H
-#define _UAPI__LINUX_VIDEODEV2_H
+#ifndef __LINUX_VIDEODEV2_H
+#define __LINUX_VIDEODEV2_H
 #include <sys/time.h>
-#include <linux/compiler.h>
 #include <linux/ioctl.h>
 #include <linux/types.h>
 #include <linux/v4l2-common.h>
@@ -327,10 +326,7 @@ struct v4l2_pix_format {
 #define V4L2_PIX_FMT_VC1_ANNEX_L v4l2_fourcc('V', 'C', '1', 'L')
 #define V4L2_PIX_FMT_VP8 v4l2_fourcc('V', 'P', '8', '0')
 #define V4L2_PIX_FMT_VP9 v4l2_fourcc('V', 'P', '9', '0')
-#define V4L2_PIX_FMT_DIVX_311 v4l2_fourcc('D', 'I', 'V', '3')
-#define V4L2_PIX_FMT_DIVX v4l2_fourcc('D', 'I', 'V', 'X')
 #define V4L2_PIX_FMT_HEVC v4l2_fourcc('H', 'E', 'V', 'C')
-#define V4L2_PIX_FMT_HEVC_HYBRID v4l2_fourcc('H', 'V', 'C', 'H')
 #define V4L2_PIX_FMT_TME v4l2_fourcc('T', 'M', 'E', '0')
 #define V4L2_PIX_FMT_CVP v4l2_fourcc('C', 'V', 'P', '0')
 #define V4L2_PIX_FMT_CPIA1 v4l2_fourcc('C', 'P', 'I', 'A')
@@ -567,20 +563,11 @@ struct v4l2_buffer {
 #define V4L2_BUF_FLAG_LAST 0x00100000
 #define V4L2_QCOM_BUF_END_OF_SUBFRAME 0x00000080
 #define V4L2_QCOM_BUF_FLAG_CODECCONFIG 0x00020000
-#define V4L2_QCOM_BUF_FLAG_EOSEQ 0x00040000
-#define V4L2_QCOM_BUF_TIMESTAMP_INVALID 0x00080000
-#define V4L2_MSM_BUF_FLAG_MBAFF 0x00000200
-#define V4L2_QCOM_BUF_FLAG_DECODEONLY 0x00200000
 #define V4L2_BUF_FLAG_DATA_CORRUPT 0x00400000
-#define V4L2_QCOM_BUF_DROP_FRAME 0x00800000
 #define V4L2_QCOM_BUF_INPUT_UNSUPPORTED 0x01000000
 #define V4L2_QCOM_BUF_FLAG_EOS 0x02000000
 #define V4L2_QCOM_BUF_FLAG_READONLY 0x04000000
-#define V4L2_MSM_VIDC_BUF_START_CODE_NOT_FOUND 0x08000000
-#define V4L2_MSM_BUF_FLAG_YUV_601_709_CLAMP 0x10000000
 #define V4L2_QCOM_BUF_FLAG_PERF_MODE 0x20000000
-#define V4L2_MSM_BUF_FLAG_DEFER 0x40000000
-#define V4L2_QCOM_BUF_FLAG_IDRFRAME 0x80000000
 struct v4l2_exportbuffer {
   __u32 type;
   __u32 index;
@@ -621,15 +608,15 @@ struct v4l2_framebuffer {
 #define V4L2_FBUF_FLAG_SRC_CHROMAKEY 0x0040
 struct v4l2_clip {
   struct v4l2_rect c;
-  struct v4l2_clip __user * next;
+  struct v4l2_clip * next;
 };
 struct v4l2_window {
   struct v4l2_rect w;
   __u32 field;
   __u32 chromakey;
-  struct v4l2_clip __user * clips;
+  struct v4l2_clip * clips;
   __u32 clipcount;
-  void __user * bitmap;
+  void * bitmap;
   __u8 global_alpha;
 };
 struct v4l2_captureparm {
@@ -865,11 +852,11 @@ struct v4l2_ext_control {
   union {
     __s32 value;
     __s64 value64;
-    char __user * string;
-    __u8 __user * p_u8;
-    __u16 __user * p_u16;
-    __u32 __user * p_u32;
-    void __user * ptr;
+    char * string;
+    __u8 * p_u8;
+    __u16 * p_u16;
+    __u32 * p_u32;
+    void * ptr;
   };
 } __attribute__((packed));
 struct v4l2_ext_controls {
@@ -1101,7 +1088,6 @@ struct v4l2_encoder_cmd {
 #define V4L2_DEC_CMD_RESUME (3)
 #define V4L2_QCOM_CMD_FLUSH (4)
 #define V4L2_QCOM_CMD_SESSION_CONTINUE (5)
-#define V4L2_DEC_QCOM_CMD_RECONFIG_HINT (6)
 #define V4L2_DEC_CMD_START_MUTE_AUDIO (1 << 0)
 #define V4L2_DEC_CMD_PAUSE_TO_BLACK (1 << 0)
 #define V4L2_DEC_CMD_STOP_TO_BLACK (1 << 0)
@@ -1251,14 +1237,10 @@ struct v4l2_streamparm {
 #define V4L2_EVENT_SOURCE_CHANGE 5
 #define V4L2_EVENT_MOTION_DET 6
 #define V4L2_EVENT_PRIVATE_START 0x08000000
-#define V4L2_EVENT_BITDEPTH_FLAG 0x1
-#define V4L2_EVENT_PICSTRUCT_FLAG 0x2
-#define V4L2_EVENT_COLOUR_SPACE_FLAG 0x4
 #define V4L2_EVENT_MSM_VIDC_START (V4L2_EVENT_PRIVATE_START + 0x00001000)
 #define V4L2_EVENT_MSM_VIDC_FLUSH_DONE (V4L2_EVENT_MSM_VIDC_START + 1)
 #define V4L2_EVENT_MSM_VIDC_PORT_SETTINGS_CHANGED_SUFFICIENT (V4L2_EVENT_MSM_VIDC_START + 2)
 #define V4L2_EVENT_MSM_VIDC_PORT_SETTINGS_CHANGED_INSUFFICIENT (V4L2_EVENT_MSM_VIDC_START + 3)
-#define V4L2_EVENT_MSM_VIDC_PORT_SETTINGS_BITDEPTH_CHANGED_INSUFFICIENT (V4L2_EVENT_MSM_VIDC_START + 4)
 #define V4L2_EVENT_MSM_VIDC_SYS_ERROR (V4L2_EVENT_MSM_VIDC_START + 5)
 #define V4L2_EVENT_MSM_VIDC_RELEASE_BUFFER_REFERENCE (V4L2_EVENT_MSM_VIDC_START + 6)
 #define V4L2_EVENT_MSM_VIDC_RELEASE_UNQUEUED_BUFFER (V4L2_EVENT_MSM_VIDC_START + 7)

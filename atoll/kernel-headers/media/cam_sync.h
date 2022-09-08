@@ -75,11 +75,4 @@ struct cam_private_ioctl_arg {
 #define CAM_SYNC_REGISTER_PAYLOAD 4
 #define CAM_SYNC_DEREGISTER_PAYLOAD 5
 #define CAM_SYNC_WAIT 6
-struct cam_sync_create2 {
-  char name[64];
-  int32_t sync_obj;
-  uint32_t client_id;
-};
-#define CAM_SYNC_CREATE2 10
-#define CAM_SYNC_RESET 11
 #endif

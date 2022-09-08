@@ -16,8 +16,8 @@
  ***
  ****************************************************************************
  ****************************************************************************/
-#ifndef _UAPI_UVESAFB_H
-#define _UAPI_UVESAFB_H
+#ifndef _UVESAFB_H
+#define _UVESAFB_H
 #include <linux/types.h>
 struct v86_regs {
   __u32 ebx;

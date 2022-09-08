@@ -63,6 +63,18 @@ struct cam_cmd_i2c_info {
   uint8_t i2c_freq_mode;
   uint8_t cmd_type;
 } __attribute__((packed));
+struct cam_cmd_get_ois_data {
+  uint32_t reg_addr;
+  uint32_t reg_data;
+  uint64_t query_size_handle;
+  uint64_t query_data_handle;
+} __attribute__((packed));
+struct cam_ois_shift {
+  int16_t ois_shift_x;
+  int16_t ois_shift_y;
+  int16_t af_lop1;
+  int64_t time_readout;
+} __attribute__((packed));
 struct cam_ois_opcode {
   uint32_t prog;
   uint32_t coeff;
@@ -87,6 +99,7 @@ struct cam_cmd_probe {
   uint32_t expected_data;
   uint32_t data_mask;
   uint16_t camera_id;
+  uint8_t fw_update_flag;
   uint16_t reserved;
 } __attribute__((packed));
 struct cam_power_settings {
@@ -170,7 +183,6 @@ struct cam_sensor_acquire_dev {
   uint32_t handle_type;
   uint32_t reserved;
   uint64_t info_handle;
-  uint32_t operation_mode;
 } __attribute__((packed));
 struct cam_sensor_streamon_dev {
   uint32_t session_handle;
@@ -178,6 +190,12 @@ struct cam_sensor_streamon_dev {
   uint32_t handle_type;
   uint32_t reserved;
   uint64_t info_handle;
+} __attribute__((packed));
+struct cam_cmd_get_sensor_data {
+  uint32_t reg_addr;
+  uint32_t reg_data;
+  uint64_t query_size_handle;
+  uint64_t query_data_handle;
 } __attribute__((packed));
 struct cam_flash_init {
   uint8_t flash_type;
